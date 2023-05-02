@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageContainerComponent } from './components/page-container/page-container.component';
+import { PetAddPageComponent } from './pages/pets/pet-add-page/pet-add-page.component';
 import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.component';
 
 @NgModule({
@@ -12,6 +13,7 @@ import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.c
     AppComponent,
     FooterComponent,
     PageContainerComponent,
+    PetAddPageComponent,
     PetListPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
