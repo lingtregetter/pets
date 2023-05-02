@@ -5,9 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageContainerComponent } from './components/page-container/page-container.component';
+import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.component';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, PageContainerComponent],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    PageContainerComponent,
+    PetListPageComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
