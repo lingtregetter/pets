@@ -29,11 +29,9 @@
         <label for="types">Type</label>
         <select class="custom-select d-block w-100" id="types">
           <option value="">Choose...</option>
-          <option>Cat</option>
-          <option>Dog</option>
-          <option>Horse</option>
-          <option>Rabbit</option>
-          <option>Parrot</option>
+          <option *ngFor="let type of typeList" [value]="type.id">
+            {{ type.type }}
+          </option>
         </select>
       </div>
 
@@ -41,11 +39,9 @@
         <label for="colors">Fur color</label>
         <select class="custom-select d-block w-100" id="colors">
           <option value="">Choose...</option>
-          <option>Black</option>
-          <option>White</option>
-          <option>Brown</option>
-          <option>Yellow</option>
-          <option>Blue</option>
+          <option *ngFor="let color of colorList" [value]="color.id">
+            {{ color.color }}
+          </option>
         </select>
       </div>
 
@@ -53,12 +49,9 @@
         <label for="countries">Country of origin</label>
         <select class="custom-select d-block w-100" id="countries">
           <option value="">Choose...</option>
-          <option>Estonia</option>
-          <option>Latvia</option>
-          <option>Lithuania</option>
-          <option>Finland</option>
-          <option>Sweden</option>
-          <option>Norway</option>
+          <option *ngFor="let country of countryList" [value]="country.id">
+            {{ country.country }}
+          </option>
         </select>
       </div>
 
