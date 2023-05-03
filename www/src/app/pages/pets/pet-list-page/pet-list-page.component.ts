@@ -9,25 +9,28 @@ import { Pet } from 'src/app/interfaces/pet.interface';
 export class PetListPageComponent {
   petList: Pet[] = [
     {
+      id: 1,
       name: 'Mustikas',
-      code: 123243424234,
+      code: 202211151535,
       type: 'Cat',
       furColor: 'Black',
-      country: 'Estonia',
+      countryOfOrigin: 'Estonia',
     },
     {
+      id: 2,
       name: 'Roy',
-      code: 123243424234,
+      code: 202211151536,
       type: 'Dog',
-      furColor: 'White',
-      country: 'Norway',
+      furColor: 'Brown',
+      countryOfOrigin: 'Latvia',
     },
     {
+      id: 3,
       name: 'Charles',
-      code: 123243424234,
+      code: 202211151536,
       type: 'Horse',
-      furColor: 'Brown',
-      country: 'Latvia',
+      furColor: 'White',
+      countryOfOrigin: 'Norway',
     },
   ];
 }
