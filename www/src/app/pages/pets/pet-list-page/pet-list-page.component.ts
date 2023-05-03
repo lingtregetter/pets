@@ -1,36 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pet } from 'src/app/interfaces/pet.interface';
+import { PetService } from 'src/app/services/pet.service';
 
 @Component({
   selector: 'app-pet-list-page',
   templateUrl: './pet-list-page.component.html',
   styleUrls: ['./pet-list-page.component.scss'],
 })
-export class PetListPageComponent {
-  petList: Pet[] = [
-    {
-      id: 1,
-      name: 'Mustikas',
-      code: 202211151535,
-      type: 'Cat',
-      furColor: 'Black',
-      countryOfOrigin: 'Estonia',
-    },
-    {
-      id: 2,
-      name: 'Roy',
-      code: 202211151536,
-      type: 'Dog',
-      furColor: 'Brown',
-      countryOfOrigin: 'Latvia',
-    },
-    {
-      id: 3,
-      name: 'Charles',
-      code: 202211151536,
-      type: 'Horse',
-      furColor: 'White',
-      countryOfOrigin: 'Norway',
-    },
-  ];
+export class PetListPageComponent implements OnInit {
+  petList: Pet[] = [];
+
+  constructor(private readonly petService: PetService) {}
+
+  ngOnInit(): void {
+    this.init();
+  }
+
+  async init(): Promise<void> {
+    this.petList = await this.petService.getPets();
+  }
 }
