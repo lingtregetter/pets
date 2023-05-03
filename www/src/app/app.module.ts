@@ -7,6 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PageContainerComponent } from './components/page-container/page-container.component';
 import { PetAddPageComponent } from './pages/pets/pet-add-page/pet-add-page.component';
 import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.c
     PetAddPageComponent,
     PetListPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
