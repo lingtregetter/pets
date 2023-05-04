@@ -21,4 +21,10 @@ export class HttpClientService {
       this.httpClient.post<Type>(`http://localhost:8000${path}`, pet)
     );
   }
+
+  put<Type>(path: string, body: any): Promise<Type> {
+    return firstValueFrom(
+      this.httpClient.put<Type>(`http://localhost:8000${path}`, body)
+    );
+  }
 }

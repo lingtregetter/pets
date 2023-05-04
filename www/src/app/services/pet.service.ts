@@ -45,4 +45,15 @@ export class PetService {
   async addPet(pet: NewPet) {
     await this.httpClientService.post('/api/pets', pet);
   }
+
+  async editPet(pet: any) {
+    await this.httpClientService.put('/api/pets/1', pet);
+  }
+
+  async getPet(): Promise<NewPet> {
+    const response = await this.httpClientService.get<NewPet>(
+      '/api/pets/pet/1'
+    );
+    return response;
+  }
 }
