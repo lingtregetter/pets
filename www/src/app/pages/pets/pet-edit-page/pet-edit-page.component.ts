@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Color } from 'src/app/interfaces/color.interface';
 import { Country } from 'src/app/interfaces/country.interface';
 import { NewPet } from 'src/app/interfaces/new-pet.interface';
@@ -16,6 +16,7 @@ export class PetEditPageComponent implements OnInit {
   typeList: Type[] = [];
   colorList: Color[] = [];
   countryList: Country[] = [];
+  petId: number | undefined;
 
   petForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -34,7 +35,8 @@ export class PetEditPageComponent implements OnInit {
 
   constructor(
     private readonly petService: PetService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -46,13 +48,15 @@ export class PetEditPageComponent implements OnInit {
     this.colorList = await this.petService.getColors();
     this.countryList = await this.petService.getCountries();
 
-    const pet = await this.petService.getPet();
-    this.name!.setValue(pet.name);
-    this.code!.setValue(pet.code);
-    this.type!.setValue(pet.typeId);
-    this.color!.setValue(pet.furColorId);
-    this.country!.setValue(pet.countryOfOriginId);
-    console.log(pet);
+    this.route.params.subscribe(async (params) => {
+      this.petId = +params['petId'];
+      const pet = await this.petService.getPet(this.petId);
+      this.name!.setValue(pet.name);
+      this.code!.setValue(pet.code);
+      this.type!.setValue(pet.typeId);
+      this.color!.setValue(pet.furColorId);
+      this.country!.setValue(pet.countryOfOriginId);
+    });
   }
 
   get name() {
@@ -90,7 +94,7 @@ export class PetEditPageComponent implements OnInit {
       countryOfOriginId: this.country!.value!,
     };
 
-    this.petService.editPet(updatedPet);
+    this.petService.editPet(updatedPet, this.petId!);
 
     this.router.navigateByUrl('pets');
   }

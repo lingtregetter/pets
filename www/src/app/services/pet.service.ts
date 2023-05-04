@@ -46,13 +46,13 @@ export class PetService {
     await this.httpClientService.post('/api/pets', pet);
   }
 
-  async editPet(pet: any) {
-    await this.httpClientService.put('/api/pets/1', pet);
+  async editPet(pet: NewPet, petId: number) {
+    await this.httpClientService.put(`/api/pets/${petId}`, pet);
   }
 
-  async getPet(): Promise<NewPet> {
+  async getPet(petId: number): Promise<NewPet> {
     const response = await this.httpClientService.get<NewPet>(
-      '/api/pets/pet/1'
+      `/api/pets/pet/${petId}`
     );
     return response;
   }
