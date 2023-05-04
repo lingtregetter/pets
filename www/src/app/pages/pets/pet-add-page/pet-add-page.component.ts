@@ -18,11 +18,18 @@ export class PetAddPageComponent implements OnInit {
   countryList: Country[] = [];
 
   petForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    code: new FormControl(),
-    type: new FormControl<number | undefined>(undefined),
-    color: new FormControl<number | undefined>(undefined),
-    country: new FormControl<number | undefined>(undefined),
+    name: new FormControl('', Validators.required),
+    code: new FormControl('', [
+      Validators.required,
+      Validators.minLength(12),
+      Validators.maxLength(12),
+    ]),
+    type: new FormControl<number | undefined>(undefined, Validators.required),
+    color: new FormControl<number | undefined>(undefined, Validators.required),
+    country: new FormControl<number | undefined>(
+      undefined,
+      Validators.required
+    ),
   });
 
   constructor(
@@ -61,10 +68,15 @@ export class PetAddPageComponent implements OnInit {
   }
 
   submitForm() {
+    this.petForm.markAllAsTouched();
+    if (this.petForm.invalid) {
+      return;
+    }
+
     const newPet: NewPet = {
       userId: 1,
       name: this.name!.value!,
-      code: this.code!.value,
+      code: this.code!.value!,
       typeId: this.type!.value!,
       furColorId: this.color!.value!,
       countryOfOriginId: this.country!.value!,

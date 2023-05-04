@@ -16,7 +16,9 @@
             placeholder="Name"
             formControlName="name"
             required
+            [class.is-invalid]="name?.touched && name?.invalid"
           />
+          <div class="invalid-feedback">Name is required.</div>
         </div>
       </div>
 
@@ -30,7 +32,9 @@
             placeholder="Code"
             formControlName="code"
             required
+            [class.is-invalid]="code?.touched && code?.invalid"
           />
+          <div class="invalid-feedback">Code is required (12 characters).</div>
         </div>
       </div>
 
@@ -41,12 +45,14 @@
           id="types"
           formControlName="type"
           required
+          [class.is-invalid]="type?.touched && type?.invalid"
         >
           <option value="null">Choose...</option>
           <option *ngFor="let type of typeList" [value]="type.id">
             {{ type.type }}
           </option>
         </select>
+        <div class="invalid-feedback">Type is required.</div>
       </div>
 
       <div class="mb-3">
@@ -56,12 +62,14 @@
           id="colors"
           formControlName="color"
           required
+          [class.is-invalid]="color?.touched && color?.invalid"
         >
           <option value="null">Choose...</option>
           <option *ngFor="let color of colorList" [value]="color.id">
             {{ color.color }}
           </option>
         </select>
+        <div class="invalid-feedback">Color is required.</div>
       </div>
 
       <div class="mb-3">
@@ -71,12 +79,14 @@
           id="countries"
           formControlName="country"
           required
+          [class.is-invalid]="country?.touched && country?.invalid"
         >
           <option value="null">Choose...</option>
           <option *ngFor="let country of countryList" [value]="country.id">
             {{ country.country }}
           </option>
         </select>
+        <div class="invalid-feedback">Country is required.</div>
       </div>
 
       <button class="btn btn-primary btn-lg btn-block" type="submit">
