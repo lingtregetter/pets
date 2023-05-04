@@ -8,6 +8,7 @@ import { PageContainerComponent } from './components/page-container/page-contain
 import { PetAddPageComponent } from './pages/pets/pet-add-page/pet-add-page.component';
 import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,12 @@ import { HttpClientModule } from '@angular/common/http';
     PetAddPageComponent,
     PetListPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

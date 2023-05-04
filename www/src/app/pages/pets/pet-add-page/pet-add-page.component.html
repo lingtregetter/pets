@@ -1,6 +1,11 @@
 <app-page-container title="Add a new pet">
   <div class="col-md-12 order-md-1">
-    <form class="needs-validation" novalidate>
+    <form
+      class="needs-validation"
+      [formGroup]="petForm"
+      (submit)="submitForm()"
+      novalidate
+    >
       <div class="mb-3">
         <label for="name">Name</label>
         <div class="input-group">
@@ -9,6 +14,8 @@
             class="form-control"
             id="name"
             placeholder="Name"
+            formControlName="name"
+            required
           />
         </div>
       </div>
@@ -21,14 +28,21 @@
             class="form-control"
             id="code"
             placeholder="Code"
+            formControlName="code"
+            required
           />
         </div>
       </div>
 
       <div class="mb-3">
         <label for="types">Type</label>
-        <select class="custom-select d-block w-100" id="types">
-          <option value="">Choose...</option>
+        <select
+          class="custom-select d-block w-100"
+          id="types"
+          formControlName="type"
+          required
+        >
+          <option value="null">Choose...</option>
           <option *ngFor="let type of typeList" [value]="type.id">
             {{ type.type }}
           </option>
@@ -37,8 +51,13 @@
 
       <div class="mb-3">
         <label for="colors">Fur color</label>
-        <select class="custom-select d-block w-100" id="colors">
-          <option value="">Choose...</option>
+        <select
+          class="custom-select d-block w-100"
+          id="colors"
+          formControlName="color"
+          required
+        >
+          <option value="null">Choose...</option>
           <option *ngFor="let color of colorList" [value]="color.id">
             {{ color.color }}
           </option>
@@ -47,8 +66,13 @@
 
       <div class="mb-3">
         <label for="countries">Country of origin</label>
-        <select class="custom-select d-block w-100" id="countries">
-          <option value="">Choose...</option>
+        <select
+          class="custom-select d-block w-100"
+          id="countries"
+          formControlName="country"
+          required
+        >
+          <option value="null">Choose...</option>
           <option *ngFor="let country of countryList" [value]="country.id">
             {{ country.country }}
           </option>

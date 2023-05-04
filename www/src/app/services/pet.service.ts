@@ -4,6 +4,7 @@ import { Type } from '../interfaces/type.interface';
 import { Color } from '../interfaces/color.interface';
 import { Country } from '../interfaces/country.interface';
 import { Pet } from '../interfaces/pet.interface';
+import { NewPet } from '../interfaces/new-pet.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +40,9 @@ export class PetService {
     const response = await this.httpClientService.get<Pet[]>('/api/pets/1');
     console.log(response);
     return response;
+  }
+
+  async addPet(pet: NewPet) {
+    await this.httpClientService.post('/api/pets', pet);
   }
 }

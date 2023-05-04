@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Color } from 'src/app/interfaces/color.interface';
 import { Country } from 'src/app/interfaces/country.interface';
+import { NewPet } from 'src/app/interfaces/new-pet.interface';
 import { Type } from 'src/app/interfaces/type.interface';
 import { PetService } from 'src/app/services/pet.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pet-add-page',
@@ -14,7 +17,18 @@ export class PetAddPageComponent implements OnInit {
   colorList: Color[] = [];
   countryList: Country[] = [];
 
-  constructor(private readonly petService: PetService) {}
+  petForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    code: new FormControl(),
+    type: new FormControl<number | undefined>(undefined),
+    color: new FormControl<number | undefined>(undefined),
+    country: new FormControl<number | undefined>(undefined),
+  });
+
+  constructor(
+    private readonly petService: PetService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
     this.init();
@@ -24,5 +38,40 @@ export class PetAddPageComponent implements OnInit {
     this.typeList = await this.petService.getTypes();
     this.colorList = await this.petService.getColors();
     this.countryList = await this.petService.getCountries();
+  }
+
+  get name() {
+    return this.petForm.get('name');
+  }
+
+  get code() {
+    return this.petForm.get('code');
+  }
+
+  get type() {
+    return this.petForm.get('type');
+  }
+
+  get color() {
+    return this.petForm.get('color');
+  }
+
+  get country() {
+    return this.petForm.get('country');
+  }
+
+  submitForm() {
+    const newPet: NewPet = {
+      userId: 1,
+      name: this.name!.value!,
+      code: this.code!.value,
+      typeId: this.type!.value!,
+      furColorId: this.color!.value!,
+      countryOfOriginId: this.country!.value!,
+    };
+
+    this.petService.addPet(newPet);
+
+    this.router.navigateByUrl('pets');
   }
 }
