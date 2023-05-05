@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PetEditPageComponent } from './pages/pets/pet-edit-page/pet-edit-page.component';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { IsAuthenticatedGuardService } from './auth/is-authenticated-guard.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { LoginPageComponent } from './pages/login/login-page/login-page.componen
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AuthGuardService, IsAuthenticatedGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
