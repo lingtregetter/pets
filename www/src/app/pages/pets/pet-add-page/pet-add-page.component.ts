@@ -6,6 +6,7 @@ import { NewPet } from 'src/app/interfaces/new-pet.interface';
 import { Type } from 'src/app/interfaces/type.interface';
 import { PetService } from 'src/app/services/pet.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pet-add-page',
@@ -34,7 +35,8 @@ export class PetAddPageComponent implements OnInit {
 
   constructor(
     private readonly petService: PetService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly userService: UserService
   ) {}
 
   ngOnInit() {
@@ -67,23 +69,28 @@ export class PetAddPageComponent implements OnInit {
     return this.petForm.get('country');
   }
 
-  submitForm() {
+  async submitForm() {
     this.petForm.markAllAsTouched();
     if (this.petForm.invalid) {
       return;
     }
 
+    const userId = this.userService.authenticatedUser!.id;
+
     const newPet: NewPet = {
-      userId: 1,
+      userId: userId,
       name: this.name!.value!,
       code: this.code!.value!,
       typeId: this.type!.value!,
       furColorId: this.color!.value!,
       countryOfOriginId: this.country!.value!,
     };
+    try {
+      await this.petService.addPet(newPet);
 
-    this.petService.addPet(newPet);
-
-    this.router.navigateByUrl('pets');
+      this.router.navigateByUrl('pets');
+    } catch (error) {
+      alert('Something went wrong- try again!');
+    }
   }
 }

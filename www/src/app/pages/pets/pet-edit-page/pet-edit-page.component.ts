@@ -6,6 +6,7 @@ import { Country } from 'src/app/interfaces/country.interface';
 import { NewPet } from 'src/app/interfaces/new-pet.interface';
 import { Type } from 'src/app/interfaces/type.interface';
 import { PetService } from 'src/app/services/pet.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-pet-edit-page',
@@ -35,6 +36,7 @@ export class PetEditPageComponent implements OnInit {
 
   constructor(
     private readonly petService: PetService,
+    private readonly userService: UserService,
     private readonly router: Router,
     private readonly route: ActivatedRoute
   ) {}
@@ -79,14 +81,15 @@ export class PetEditPageComponent implements OnInit {
     return this.petForm.get('country');
   }
 
-  submitForm() {
+  async submitForm() {
     this.petForm.markAllAsTouched();
     if (this.petForm.invalid) {
       return;
     }
 
+    const userId = this.userService.authenticatedUser!.id;
     const updatedPet: NewPet = {
-      userId: 1,
+      userId: userId,
       name: this.name!.value!,
       code: this.code!.value!,
       typeId: this.type!.value!,
@@ -94,8 +97,11 @@ export class PetEditPageComponent implements OnInit {
       countryOfOriginId: this.country!.value!,
     };
 
-    this.petService.editPet(updatedPet, this.petId!);
-
-    this.router.navigateByUrl('pets');
+    try {
+      await this.petService.editPet(updatedPet, this.petId!);
+      this.router.navigateByUrl('pets');
+    } catch (error) {
+      alert('Something went wrong with update');
+    }
   }
 }
