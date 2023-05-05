@@ -5,12 +5,16 @@ import { Color } from '../interfaces/color.interface';
 import { Country } from '../interfaces/country.interface';
 import { Pet } from '../interfaces/pet.interface';
 import { NewPet } from '../interfaces/new-pet.interface';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PetService {
-  constructor(private readonly httpClientService: HttpClientService) {}
+  constructor(
+    private readonly httpClientService: HttpClientService,
+    private readonly userService: UserService
+  ) {}
 
   async getTypes(): Promise<Type[]> {
     const response = await this.httpClientService.get<Type[]>(
@@ -37,7 +41,10 @@ export class PetService {
   }
 
   async getPets(): Promise<Pet[]> {
-    const response = await this.httpClientService.get<Pet[]>('/api/pets/1');
+    const userId = this.userService.authenticatedUser!.id;
+    const response = await this.httpClientService.get<Pet[]>(
+      `/api/pets/${userId}`
+    );
     console.log(response);
     return response;
   }
