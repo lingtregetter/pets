@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Pet } from '../interfaces/pet.interface';
 import { NewPet } from '../interfaces/new-pet.interface';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +17,9 @@ export class HttpClientService {
     );
   }
 
-  post<Type>(path: string, pet: NewPet): Promise<Type> {
+  post<Type>(path: string, body: any): Promise<Type> {
     return firstValueFrom(
-      this.httpClient.post<Type>(`http://localhost:8000${path}`, pet)
+      this.httpClient.post<Type>(`http://localhost:8000${path}`, body)
     );
   }
 
