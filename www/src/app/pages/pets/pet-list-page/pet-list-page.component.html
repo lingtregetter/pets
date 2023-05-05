@@ -4,11 +4,11 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Code</th>
-        <th scope="col">Type</th>
-        <th scope="col">Fur color</th>
-        <th scope="col">Country</th>
+        <th scope="col" (click)="sortByName()">Name <span>↓</span></th>
+        <th scope="col" (click)="sortByCode()">Code <span>↓</span></th>
+        <th scope="col" (click)="sortByType()">Type <span>↓</span></th>
+        <th scope="col" (click)="sortByColor()">Fur color <span>↓</span></th>
+        <th scope="col" (click)="sortByCountry()">Country <span>↓</span></th>
         <th></th>
       </tr>
     </thead>
