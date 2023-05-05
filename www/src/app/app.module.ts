@@ -10,6 +10,7 @@ import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.c
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PetEditPageComponent } from './pages/pets/pet-edit-page/pet-edit-page.component';
+import { LoginPageComponent } from './pages/login/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PetEditPageComponent } from './pages/pets/pet-edit-page/pet-edit-page.c
     PetAddPageComponent,
     PetListPageComponent,
     PetEditPageComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,
