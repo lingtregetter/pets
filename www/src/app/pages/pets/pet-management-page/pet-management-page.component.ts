@@ -9,9 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-pet-add-page',
-  templateUrl: './pet-add-page.component.html',
-  styleUrls: ['./pet-add-page.component.scss'],
+  selector: 'app-pet-management-page',
+  templateUrl: './pet-management-page.component.html',
+  styleUrls: ['./pet-management-page.component.scss'],
 })
 export class PetAddPageComponent implements OnInit {
   typeList: Type[] = [];

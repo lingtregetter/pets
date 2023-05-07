@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PageContainerComponent } from './components/page-container/page-container.component';
-import { PetAddPageComponent } from './pages/pets/pet-add-page/pet-add-page.component';
+import { PetAddPageComponent } from './pages/pets/pet-management-page/pet-management-page.component';
 import { PetListPageComponent } from './pages/pets/pet-list-page/pet-list-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
