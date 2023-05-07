@@ -51,7 +51,6 @@ export class PetAddPageComponent implements OnInit {
     this.colorList = await this.petService.getColors();
     this.countryList = await this.petService.getCountries();
 
-    console.log(this.activatedRoute.snapshot.data['input']);
     this.pageMode = this.activatedRoute.snapshot.data['input'];
 
     if (this.pageMode === 'edit') {

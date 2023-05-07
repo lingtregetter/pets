@@ -20,7 +20,6 @@ export class PetService {
     const response = await this.httpClientService.get<Type[]>(
       '/api/pets/types'
     );
-    console.log(response);
     return response;
   }
 
@@ -28,7 +27,6 @@ export class PetService {
     const response = await this.httpClientService.get<Color[]>(
       '/api/pets/colors'
     );
-    console.log(response);
     return response;
   }
 
@@ -36,7 +34,6 @@ export class PetService {
     const response = await this.httpClientService.get<Country[]>(
       '/api/pets/countries'
     );
-    console.log(response);
     return response;
   }
 
@@ -45,16 +42,15 @@ export class PetService {
     const response = await this.httpClientService.get<Pet[]>(
       `/api/pets/${userId}`
     );
-    console.log(response);
     return response;
   }
 
-  async addPet(pet: NewPet) {
-    await this.httpClientService.post('/api/pets', pet);
+  async addPet(pet: NewPet): Promise<void> {
+    await this.httpClientService.post<void>('/api/pets', pet);
   }
 
-  async editPet(pet: NewPet, petId: number) {
-    await this.httpClientService.put(`/api/pets/${petId}`, pet);
+  async editPet(pet: NewPet, petId: number): Promise<void> {
+    await this.httpClientService.put<void>(`/api/pets/${petId}`, pet);
   }
 
   async getPet(petId: number): Promise<NewPet> {

@@ -29,9 +29,6 @@ export class LoginPageComponent {
   }
 
   async submitForm() {
-    console.log(this.username?.value);
-    console.log(this.password?.value);
-
     this.userForm.markAllAsTouched();
     if (this.userForm.invalid) {
       return;
