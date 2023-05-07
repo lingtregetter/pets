@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Node version: 18.16.0
 
+Bootstrap version: 5.3.0
+
 ## Back-end:
 
 [Back-end](https://github.com/lingtregetter/task)
@@ -38,6 +40,12 @@ user3 : 1234
 
 Inspect -> Application -> Session Storage -> Clear Session Storage
 
+#### List sorting
+
+Clicking on specific column header sorts the entire table: a-z and z-a.
+
+- Needs improvements
+
 ## Time spent (API + Front)
 
 ~45h
@@ -47,6 +55,7 @@ Inspect -> Application -> Session Storage -> Clear Session Storage
 - Authentication with spring security
 - Log out button
 - Replace alerts with HTML error messages
+- Better solution for sorting + visual changes in UI
 
 ## Helpful links for me
 
