@@ -38,7 +38,7 @@ export class PetEditPageComponent implements OnInit {
     private readonly petService: PetService,
     private readonly userService: UserService,
     private readonly router: Router,
-    private readonly route: ActivatedRoute
+    private readonly activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class PetEditPageComponent implements OnInit {
     this.colorList = await this.petService.getColors();
     this.countryList = await this.petService.getCountries();
 
-    this.route.params.subscribe(async (params) => {
+    this.activatedRoute.params.subscribe(async (params) => {
       this.petId = +params['petId'];
       const pet = await this.petService.getPet(this.petId);
       this.name!.setValue(pet.name);
