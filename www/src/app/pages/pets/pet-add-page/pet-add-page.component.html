@@ -1,4 +1,6 @@
-<app-page-container title="Add a new pet">
+<app-page-container
+  title="{{ pageMode === 'add' ? 'Add a new pet' : 'Edit pet' }}"
+>
   <div class="col-md-12 order-md-1">
     <form
       class="needs-validation"
@@ -90,7 +92,7 @@
       </div>
 
       <button class="btn btn-primary btn-lg btn-block" type="submit">
-        Add Pet
+        {{ pageMode === "add" ? "Add Pet" : "Edit Pet" }}
       </button>
     </form>
   </div>

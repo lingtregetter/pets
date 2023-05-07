@@ -5,7 +5,7 @@ import { Country } from 'src/app/interfaces/country.interface';
 import { NewPet } from 'src/app/interfaces/new-pet.interface';
 import { Type } from 'src/app/interfaces/type.interface';
 import { PetService } from 'src/app/services/pet.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -17,6 +17,8 @@ export class PetAddPageComponent implements OnInit {
   typeList: Type[] = [];
   colorList: Color[] = [];
   countryList: Country[] = [];
+  petId: number | undefined;
+  pageMode: string = 'add';
 
   petForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -36,7 +38,8 @@ export class PetAddPageComponent implements OnInit {
   constructor(
     private readonly petService: PetService,
     private readonly router: Router,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -47,6 +50,19 @@ export class PetAddPageComponent implements OnInit {
     this.typeList = await this.petService.getTypes();
     this.colorList = await this.petService.getColors();
     this.countryList = await this.petService.getCountries();
+
+    console.log(this.activatedRoute.snapshot.data['input']);
+    this.pageMode = this.activatedRoute.snapshot.data['input'];
+
+    if (this.pageMode === 'edit') {
+      this.petId = +this.activatedRoute.snapshot.params['petId'];
+      const pet = await this.petService.getPet(this.petId);
+      this.name!.setValue(pet.name);
+      this.code!.setValue(pet.code);
+      this.type!.setValue(pet.typeId);
+      this.color!.setValue(pet.furColorId);
+      this.country!.setValue(pet.countryOfOriginId);
+    }
   }
 
   get name() {
@@ -76,8 +92,7 @@ export class PetAddPageComponent implements OnInit {
     }
 
     const userId = this.userService.authenticatedUser!.id;
-
-    const newPet: NewPet = {
+    const pet: NewPet = {
       userId: userId,
       name: this.name!.value!,
       code: this.code!.value!,
@@ -85,8 +100,13 @@ export class PetAddPageComponent implements OnInit {
       furColorId: this.color!.value!,
       countryOfOriginId: this.country!.value!,
     };
+
     try {
-      await this.petService.addPet(newPet);
+      if (this.pageMode === 'add') {
+        await this.petService.addPet(pet);
+      } else {
+        await this.petService.editPet(pet, this.petId!);
+      }
 
       this.router.navigateByUrl('pets');
     } catch (error) {
