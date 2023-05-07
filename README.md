@@ -38,7 +38,9 @@ user3 : 1234
 
 #### How to log out
 
-Inspect -> Application -> Session Storage -> Clear Session Storage
+- Inspect -> Application -> Session Storage -> Clear Session Storage
+  OR
+- Close browser window/tab and reopen
 
 #### List sorting
 
