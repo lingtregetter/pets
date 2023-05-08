@@ -31,7 +31,9 @@ Development server started: `http://localhost:4200/`
 #### Default users
 
 user1 : 1234 - (by default has 3 pets)
+
 user2 : 1234
+
 user3 : 1234
 
 (username : password)
