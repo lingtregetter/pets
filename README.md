@@ -58,7 +58,7 @@ Clicking on specific column header sorts the entire table: a-z and z-a.
 
 - Authentication with spring security
 - Log out button
-- Replace alerts with HTML error messages
+- Replace alerts with HTML error messages (overall validation improvements)
 - Better solution for sorting + visual changes in UI
 
 ## Helpful links for me
